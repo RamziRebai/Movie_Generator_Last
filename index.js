@@ -28,9 +28,9 @@ async function fetchBotReply(){
     const response= await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'text/plain',
         },
-        body: JSON.stringify()
+        body: ''
     })
     const data= await response.json()
     console.log(data)
