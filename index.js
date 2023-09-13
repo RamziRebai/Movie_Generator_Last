@@ -18,29 +18,42 @@ document.getElementById("send-btn").addEventListener("click", () => {
     const userInput = setupTextarea.value
     setupInputContainer.innerHTML = `<img src="images/loading.svg" class="loading" id="loading">`
     movieBossText.innerText = `Ok, I am just handling your request...`
-    //fetchBotReply(userInput)
-    fetchBotSynopsis(userInput)
+    fetchBotReply(userInput)
+    //fetchBotSynopsis(userInput)
     }
 })
 
-async function fetchBotReply(outline) {
-    const response = await openai.completions.create({
-        model: 'text-ada-001',
-        prompt: `Generate a short enthusiastically message to respond to a user idea"
-        ###
-        user idea:  Let's organize a community cleanup event this weekend!
-        message response: What a fantastic idea! Count me in, and let's make our community shine together this weekend!
-        ###
-        user idea:  How about starting a book club for our friends?
-        message response: I love it! A book club sounds amazing. Let's dive into some great reads and lively discussions together!
-        ###
-        user idea: "${outline}"
-        message response:
-        `,
-        max_tokens: 30 // defaults to 16
+async function fetchBotReply(){
+    const url= "https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI"
+    const response= await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify()
     })
-    movieBossText.innerText = response.choices[0].text.trim();
-} 
+    const data= await response.json()
+    console.log(data)
+}
+
+// async function fetchBotReply(outline) {
+//     const response = await openai.completions.create({
+//         model: 'text-ada-001',
+//         prompt: `Generate a short enthusiastically message to respond to a user idea"
+//         ###
+//         user idea:  Let's organize a community cleanup event this weekend!
+//         message response: What a fantastic idea! Count me in, and let's make our community shine together this weekend!
+//         ###
+//         user idea:  How about starting a book club for our friends?
+//         message response: I love it! A book club sounds amazing. Let's dive into some great reads and lively discussions together!
+//         ###
+//         user idea: "${outline}"
+//         message response:
+//         `,
+//         max_tokens: 30 // defaults to 16
+//     })
+//     movieBossText.innerText = response.choices[0].text.trim();
+// } 
 
 async function fetchBotSynopsis(outline) {
     const completion= await openai.completions.create({
