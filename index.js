@@ -24,7 +24,7 @@ document.getElementById("send-btn").addEventListener("click", () => {
 })
 
 async function fetchBotReply(outline){
-    const url= "https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI"
+    const url= "https://moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI"
     const response= await fetch(url, {
         method: 'POST',
         headers: {
