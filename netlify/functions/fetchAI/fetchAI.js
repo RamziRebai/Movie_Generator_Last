@@ -6,9 +6,9 @@ const openai= OpenAI(
   }
 )
 
-exports.handler= async (event) => {
+const handler= async (event) => {
   const {path}= event;
-  if (path === '/fetchBotReply') {
+  if (path === 'https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI/fetchBotReply') {
     const  result = openai.completions.create({
       model: 'text-ada-001',
       prompt: `Generate a short enthusiastically message to respond to a user idea"
