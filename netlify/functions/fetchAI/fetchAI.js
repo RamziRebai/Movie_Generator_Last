@@ -7,7 +7,7 @@ const openai = new OpenAI({
 const handler = async (event) => {
     try {
       const response = await openai.completions.create({
-        model: 'text-davinci-003',
+        model: 'text-ada-001',
         prompt: `Generate a short enthusiastically message to respond to a user idea "${event.body}"
         `,
         max_tokens: 16 // defaults to 16
