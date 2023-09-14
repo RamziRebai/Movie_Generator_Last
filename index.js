@@ -18,7 +18,7 @@ document.getElementById("send-btn").addEventListener("click", () => {
 //https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI
 
 async function fetchBotReply(outline){
-    const url ="https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI";
+    const url ="https://main--moviegeneratorlast2.netlify.app/.netlify/opt/build/repo/netlify/functions/fetchAI";
     const response= await fetch(url, {
         method: "POST",
         headers: {
