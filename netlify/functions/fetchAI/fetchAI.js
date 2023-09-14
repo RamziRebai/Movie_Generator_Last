@@ -6,6 +6,10 @@ const openai = OpenAI({
 });
 
 const handler = async (event) => {
+  const openai = OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+  });
   try {
       const response = await openai.completions.create({
         model: 'text-ada-001',
@@ -25,7 +29,7 @@ const handler = async (event) => {
       return {
           statusCode: 200,
           body: JSON.stringify({
-              reply: response.data                
+              reply: response                
           })
       }
   } catch (error) {
