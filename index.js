@@ -55,6 +55,7 @@ async function fetchBotReply(outline){
 //     movieBossText.innerText = response.choices[0].text.trim();
 // } 
 
+/*
 async function fetchBotSynopsis(outline) {
     const completion= await openai.completions.create({
         model: 'text-davinci-003',
@@ -176,7 +177,7 @@ async function fetchImage(resp){
     console.log(response);
     document.getElementById("output-img-container").innerHTML= `<img src="${response.data[0].url}">`
 } 
-*/
+
 async function fetchImage(imagePrompt){
   const response = await openai.images.generate({
     //prompt: `generate dogs. There should be no text in this image.`,
@@ -196,7 +197,6 @@ async function fetchImage(imagePrompt){
   })
   
 }
-/*
 async function fetchImage(imagePrompt){
   const response = await openai.createImage({
     //prompt: `${imagePrompt}. There should be no text in this image.`,
@@ -208,5 +208,6 @@ async function fetchImage(imagePrompt){
   console.log(response)
     
   document.getElementById('output-img-container').innerHTML = `<img src="${response.data.data[0].url}">`
-} */
+} 
 
+*/
