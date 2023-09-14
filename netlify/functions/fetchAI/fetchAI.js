@@ -1,10 +1,12 @@
 import { OpenAI } from 'openai'
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-})
+
 
 const handler = async (event) => {
+    const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+        dangerouslyAllowBrowser:true,
+    })
     try {
       const response = await openai.completions.create({
         model: 'text-ada-001',
