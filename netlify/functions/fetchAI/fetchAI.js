@@ -8,7 +8,7 @@ const openai= OpenAI(
 
 const handler= async (event) => {
   const {path}= event;
-  if (path === 'https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI/fetchBotReply') {
+  if (path === '/fetchAI/fetchBotReply') {
     const  result = openai.completions.create({
       model: 'text-ada-001',
       prompt: `Generate a short enthusiastically message to respond to a user idea"
@@ -29,6 +29,7 @@ const handler= async (event) => {
       body: JSON.stringify({reply: result.data})
     };
   }
+  /*
   else if(path==='/fetchTitle') {
     const result= performfetchTitle()
     return {
@@ -39,24 +40,12 @@ const handler= async (event) => {
     };
   } 
   else if(path ==='/fetchBotSynopsis') {
-    const  result = openai.completions.create({
-      model: 'text-ada-001',
-      prompt: `Generate a short enthusiastically message to respond to a user idea"
-      ###
-      user idea:  Let's organize a community cleanup event this weekend!
-      message response: What a fantastic idea! Count me in, and let's make our community shine together this weekend!
-      ###
-      user idea:  How about starting a book club for our friends?
-      message response: I love it! A book club sounds amazing. Let's dive into some great reads and lively discussions together!
-      ###
-      user idea: "${event.body}"
-      message response:
-      `,
-      max_tokens: 30 // defaults to 16
-  })
+    const result= performfetchTitle()
     return {
       statusCode: 200,
-      body: JSON.stringify({reply: result.data})
+      body: JSON.stringify({
+        reply: result.data
+      })
     };
   }
   else if(path==='/fetchTitle') {
@@ -111,5 +100,7 @@ function performFunctionB() {
   // Implement functionality B
   return { message: 'Functionality B executed' };
 };
+*/
+}
 
 module.exports= {handler}
