@@ -3,7 +3,7 @@ import { OpenAI } from 'openai';
 const handler = async (event) => {
   try {
     // Retrieve the OPENAI_API_KEY from environmental variables
-    const apiKey = process.env.OPENAI_API_KEY;
+    const apiKey =  process.env.OPENAI_API_KEY;
 
     // Check if the API key is defined
     if (!apiKey) {
