@@ -16,10 +16,24 @@ exports.handler= async (event) => {
     };
   } 
   else if(path ==='/fetchBotSynopsis') {
-    const result= performfetchBotSynopsis()
+    const  result = openai.completions.create({
+      model: 'text-ada-001',
+      prompt: `Generate a short enthusiastically message to respond to a user idea"
+      ###
+      user idea:  Let's organize a community cleanup event this weekend!
+      message response: What a fantastic idea! Count me in, and let's make our community shine together this weekend!
+      ###
+      user idea:  How about starting a book club for our friends?
+      message response: I love it! A book club sounds amazing. Let's dive into some great reads and lively discussions together!
+      ###
+      user idea: "${event.body}"
+      message response:
+      `,
+      max_tokens: 30 // defaults to 16
+  })
     return {
       statusCode: 200,
-      body: JSON.stringify(result)
+      body: JSON.stringify({reply: result.data})
     };
   }
   else if(path==='/fetchTitle') {
@@ -59,24 +73,9 @@ exports.handler= async (event) => {
 };
 
 
-function performfetchBotReply(){
-  const response = openai.completions.create({
-            model: 'text-ada-001',
-            prompt: `Generate a short enthusiastically message to respond to a user idea"
-            ###
-            user idea:  Let's organize a community cleanup event this weekend!
-            message response: What a fantastic idea! Count me in, and let's make our community shine together this weekend!
-            ###
-            user idea:  How about starting a book club for our friends?
-            message response: I love it! A book club sounds amazing. Let's dive into some great reads and lively discussions together!
-            ###
-            user idea: "${outline}"
-            message response:
-            `,
-            max_tokens: 30 // defaults to 16
-        })
-        return response
-}
+// function performfetchBotReply(){
+  
+// }
 
 
 // Helper functions for your functionalities
