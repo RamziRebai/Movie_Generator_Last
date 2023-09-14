@@ -1,11 +1,10 @@
-import {OpenAI} from 'openai'
+import OpenAI from 'openai'
 
 const openai= OpenAI(
   { apiKey: process.env.OPENAI_API_KEY,
     dangerouslyAllowBrowser: true 
   }
 )
-
 const handler= async (event) => {
   if (path === '/fetchAI/fetchBotReply') {
     const result = openai.completions.create({
@@ -26,7 +25,7 @@ const handler= async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ reply: result.data })
+      body: JSON.stringify({ reply: result })
     };
   }
 }
@@ -102,4 +101,4 @@ function performFunctionB() {
   // Implement functionality B
   return { message: 'Functionality B executed' };
 };
-}
+*/

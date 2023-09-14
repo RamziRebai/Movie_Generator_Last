@@ -1,16 +1,10 @@
-// import { process } from '/env'
-// import OpenAI  from 'openai'
+
 
 const setupInputContainer = document.getElementById('setup-input-container')
 const movieBossText = document.getElementById('movie-boss-text')
 const synopsisText = document.getElementById("output-text")
 const synopsisTitle= document.getElementById("output-title")
 const synopsisStars= document.getElementById("output-stars")
-
-// const openai = new OpenAI({
-//     apiKey: process.env.OPENAI_API_KEY,
-//     dangerouslyAllowBrowser: true 
-// });
 
 document.getElementById("send-btn").addEventListener("click", () => {
     const setupTextarea = document.getElementById('setup-textarea')
