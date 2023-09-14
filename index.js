@@ -18,6 +18,20 @@ document.getElementById("send-btn").addEventListener("click", () => {
 //https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI
 
 async function fetchBotReply(outline){
+    const url ="https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI";
+    const response= await fetch(url, {
+        method: "POST",
+        headers: {
+            "content-type": "text/plain"
+        },
+        body:outline
+    })
+    const data= await response.json()
+    console.log(data)
+}
+
+/*
+async function fetchBotReply(outline){
     const url= "https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI"
     const response= await fetch(url, {
         method: 'POST',
@@ -29,7 +43,7 @@ async function fetchBotReply(outline){
     const data= await response.json()
     console.log(data)
 }
-
+*/
 // async function fetchBotReply(outline) {
 //     const response = await openai.completions.create({
 //         model: 'text-ada-001',

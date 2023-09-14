@@ -6,6 +6,7 @@ const openai= OpenAI(
   }
 )
 
+/*
 const handler= async (event) => {
   if (path === '/fetchAI/fetchBotReply') {
     const result = openai.completions.create({
@@ -32,7 +33,7 @@ const handler= async (event) => {
 }
 module.exports= {handler}
 
-  /*
+
   else if(path==='/fetchTitle') {
     const result= performfetchTitle()
     return {
