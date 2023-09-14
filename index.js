@@ -4,6 +4,7 @@ const synopsisText = document.getElementById("output-text")
 const synopsisTitle= document.getElementById("output-title")
 const synopsisStars= document.getElementById("output-stars")
 
+
 document.getElementById("send-btn").addEventListener("click", () => {
     const setupTextarea = document.getElementById('setup-textarea')
     if (setupTextarea.value) {
