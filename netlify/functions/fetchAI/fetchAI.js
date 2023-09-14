@@ -6,26 +6,31 @@ const openai = OpenAI({
 });
 
 const handler = async (event) => {
-  const result = await openai.completions.create({
-    model: 'text-ada-001',
-    prompt: `Generate a short enthusiastic message to respond to a user idea"
-    ###
-    user idea: Let's organize a community cleanup event this weekend!
-    message response: What a fantastic idea! Count me in, and let's make our community shine together this weekend!
-    ###
-    user idea: How about starting a book club for our friends?
-    message response: I love it! A book club sounds amazing. Let's dive into some great reads and lively discussions together!
-    ###
-    user idea: "${event.body}"
-    message response:
-    `,
-    max_tokens: 30,
-  });
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ reply: result}),
-  };
+  try {
+      const response = await openai.createCompletion({
+        model: 'text-ada-001',
+        prompt: `Generate a short enthusiastically message to respond to a user idea"
+        ###
+        user idea:  Let's organize a community cleanup event this weekend!
+        message response: What a fantastic idea! Count me in, and let's make our community shine together this weekend!
+        ###
+        user idea:  How about starting a book club for our friends?
+        message response: I love it! A book club sounds amazing. Let's dive into some great reads and lively discussions together!
+        ###
+        user idea: "${event.body}"
+        message response:
+        `,
+        max_tokens: 30 // defaults to 16
+      })
+      return {
+          statusCode: 200,
+          body: JSON.stringify({
+              reply: response.data                
+          })
+      }
+  } catch (error) {
+      return { statusCode: 500, body: error.toString() }
+  }
 }
-module.exports = { handler };
 
+module.exports = { handler }

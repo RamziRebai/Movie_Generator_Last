@@ -28,12 +28,12 @@ async function fetchBotReply(outline){
     const response= await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'text/plain',
+            'content-type': 'text/plain',
         },
         body: outline
     })
     const data= await response.json();
-    movieBossText.innerText = data.choices[0].text.trim();
+    movieBossText.innerText = data.reply.choices[0].text.trim();
 }
 
 // async function fetchBotReply(outline) {
