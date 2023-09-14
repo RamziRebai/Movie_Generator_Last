@@ -1,6 +1,5 @@
 {
   "name": "project",
-  "type": "module",
   "dependencies": {
     "openai": "4.5.0"
   },
@@ -13,6 +12,4 @@
     "build": "vite build",
     "preview": "vite preview"
   }
-
-  
 }
