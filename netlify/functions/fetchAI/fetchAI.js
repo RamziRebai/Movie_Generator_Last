@@ -1,16 +1,16 @@
-import {OpenAI} from 'openai'
+import { OpenAI } from 'openai';
 
-const openai= OpenAI(
-  { apiKey: process.env.OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true 
-  }
-)
+const openai = OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
 
-const handler= async (event) => {
-  if (path === '/fetchAI/fetchBotReply') {
+const handler = async (event) => {
+  const { path } = event; // Extract the path from the event object
+  if (path === '/.netlify/functions/fetchAI/fetchBotReply') {
     const result = openai.completions.create({
       model: 'text-ada-001',
-      prompt: `Generate a short enthusiastically message to respond to a user idea"
+      prompt: `Generate a short enthusiastic message to respond to a user idea"
         ###
         user idea:  Let's organize a community cleanup event this weekend!
         message response: What a fantastic idea! Count me in, and let's make our community shine together this weekend!
@@ -21,23 +21,24 @@ const handler= async (event) => {
         user idea: "${event.body}"
         message response:
         `,
-      max_tokens: 30
+      max_tokens: 30,
     });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ reply: result.data })
+      body: JSON.stringify({ reply: result }),
     };
   }
 
   // Return a 400 status for other paths
   return {
     statusCode: 400,
-    body: JSON.stringify({ message: 'Not Found' })
+    body: JSON.stringify({ message: 'Not Found' }),
   };
 };
 
 module.exports = { handler };
+
   /*
   else if(path==='/fetchTitle') {
     const result= performfetchTitle()

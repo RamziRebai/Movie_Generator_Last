@@ -33,7 +33,7 @@ async function fetchBotReply(outline){
         body: outline
     })
     const data= await response.json();
-    movieBossText.innerText = data.reply.choices[0].text.trim();
+    movieBossText.innerText = reply.choices[0].text.trim();
 }
 
 // async function fetchBotReply(outline) {
