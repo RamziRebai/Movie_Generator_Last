@@ -1,12 +1,13 @@
 import OpenAI from 'openai'
 
-const openai= OpenAI(
-  { apiKey: process.env.OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true 
-  }
-)
+
 const handler= async (event) => {
   if (path === '/fetchAI/fetchBotReply') {
+    const openai= OpenAI(
+      { apiKey: process.env.OPENAI_API_KEY,
+        dangerouslyAllowBrowser: true 
+      }
+    )
     const result = openai.completions.create({
       model: 'text-ada-001',
       prompt: `Generate a short enthusiastically message to respond to a user idea"
