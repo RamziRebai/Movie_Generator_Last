@@ -22,10 +22,10 @@ async function fetchBotReply(outline){
     const response= await fetch(url, {
         method: "POST",
         headers: {
-            "content-type": "text/plain"
+            "Content-Type": "text/plain"
         },
         body:outline
-    })
+    });
     const data= await response.json()
     console.log(data)
 }
