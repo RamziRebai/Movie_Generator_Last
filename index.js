@@ -23,17 +23,17 @@ document.getElementById("send-btn").addEventListener("click", () => {
     }
 })
 
-async function fetchBotReply(){
-    const url= "https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI"
+async function fetchBotReply(outline){
+    const url= "https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI/fetchBotReply"
     const response= await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'text/plain',
         },
-        body: ''
+        body: outline
     })
-    const data= await response.json()
-    console.log(data)
+    const data= await response.json();
+    movieBossText.innerText = data.reply.choices[0].text.trim();
 }
 
 // async function fetchBotReply(outline) {
@@ -78,7 +78,7 @@ async function fetchBotSynopsis(outline) {
     const generated_synobsis= completion.choices[0].text.trim();
     synopsisText.innerText = generated_synobsis;
     fetchTitle(generated_synobsis); 
-    //fetchStars(generated_synobsis);
+    fetchStars(generated_synobsis);
 }
 
 async function fetchTitle(gener_syn){
