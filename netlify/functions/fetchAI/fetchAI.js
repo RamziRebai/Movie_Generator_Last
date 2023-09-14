@@ -10,7 +10,7 @@ const handler = async (event) => {
         model: 'text-davinci-003',
         prompt: `Generate a short enthusiastically message to respond to a user idea "${event.body}"
         `,
-        max_tokens: 30 // defaults to 16
+        max_tokens: 16 // defaults to 16
         })
         return {
             statusCode: 200,
