@@ -90,3 +90,4 @@ function performFunctionB() {
   return { message: 'Functionality B executed' };
 };
 
+module.exports= {handler}
