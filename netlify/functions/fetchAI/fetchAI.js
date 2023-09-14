@@ -7,7 +7,7 @@ const openai = OpenAI({
 
 const handler = async (event) => {
   try {
-      const response = await openai.createCompletion({
+      const response = await openai.completions.create({
         model: 'text-ada-001',
         prompt: `Generate a short enthusiastically message to respond to a user idea"
         ###
