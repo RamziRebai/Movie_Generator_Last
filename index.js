@@ -31,7 +31,7 @@ async function fetchBotReply(outline){
             'content-type': 'text/plain',
         },
         body: outline
-    })
+    });
     const data= await response.json();
     movieBossText.innerText = data.reply.choices[0].text.trim();
 }
