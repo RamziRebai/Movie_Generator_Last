@@ -9,14 +9,7 @@ const handler = async (event) => {
       const response = await openai.completions.create({
         model: 'text-davinci-003',
         prompt: `Generate a short enthusiastically message to respond to a user idea"
-        ###
-        user idea:  Let's organize a community cleanup event this weekend!
-        message response: What a fantastic idea! Count me in, and let's make our community shine together this weekend!
-        ###
-        user idea:  How about starting a book club for our friends?
-        message response: I love it! A book club sounds amazing. Let's dive into some great reads and lively discussions together!
-        ###
-        user idea: "${outline}"
+        user idea: "${event.body}"
         message response:
         `,
         max_tokens: 30 // defaults to 16
