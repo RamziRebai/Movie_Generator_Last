@@ -1,9 +1,5 @@
 import { OpenAI } from 'openai';
 
-const openai = OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
 
 const handler = async (event) => {
   const openai = OpenAI({
