@@ -23,18 +23,35 @@ document.getElementById("send-btn").addEventListener("click", () => {
     }
 })
 
-async function fetchBotReply(outline){
-    const url= "https://main--moviegeneratorlast2.netlify.app/.netlify/functions/fetchAI/fetchBotReply"
-    const response= await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'text/plain',
-        },
-        body: outline
-    })
-    const data= await response.json();
-    movieBossText.innerText = reply.choices[0].text.trim();
+async function fetchBotReply(outline) {
+    const url = "/.netlify/functions/fetchAI/fetchBotReply"; // Use a relative URL to make the request to the serverless function
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: outline,
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        if (data && data.reply && data.reply.choices && data.reply.choices.length > 0) {
+            const botReply = data.reply.choices[0].text.trim();
+            movieBossText.innerText = botReply;
+        } else {
+            movieBossText.innerText = "No response from the serverless function.";
+        }
+    } catch (error) {
+        console.error("Error fetching bot reply:", error);
+        movieBossText.innerText = "Error fetching bot reply.";
+    }
 }
+
 
 // async function fetchBotReply(outline) {
 //     const response = await openai.completions.create({
