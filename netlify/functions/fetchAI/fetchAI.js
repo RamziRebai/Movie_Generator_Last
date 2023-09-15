@@ -13,7 +13,7 @@ const handler = async (event) => {
         prompt: `Generate a short enthusiastically message to respond to a user idea "${event.body}"
         `,
         max_tokens: 16 // defaults to 16
-        })
+        });
         return {
             statusCode: 200,
             body: JSON.stringify({reply: response.data})
